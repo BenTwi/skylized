@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+    console.log("[SKYLIZED] Initializing..")
   setTimeout(SKYLIZE.init, 100);
 });
 
@@ -205,6 +206,7 @@ class SKYLIZED extends EventTarget {
 
   // You can still define init and other methods normally
   init() {
+    console.log("[SKYLIZED] Init-Repeatative..")
     setInterval(() => {
       SKYLIZE._repetiveTasks.timings({
         timezone: "Europe/Berlin",
@@ -219,6 +221,7 @@ class SKYLIZED extends EventTarget {
     });
     SKYLIZE.repeatTasks();
     setInterval(SKYLIZE.repeatTasks, 2000);
+    console.log("[SKYLIZED] We are ready!")
   }
 
   repeatTasks() {
