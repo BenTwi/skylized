@@ -142,7 +142,7 @@ class SKYLIZED extends EventTarget {
 
         return date.toLocaleDateString(); // Default fallback
       },
-    };
+},
 
     this._repetiveTasks = {
       applySelectables: () => {
