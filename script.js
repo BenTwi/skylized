@@ -11,6 +11,73 @@ class SKYLIZED extends EventTarget {
         super();
         // Initialize the utils object here
         this.utils = {
+
+            animations: {
+
+    slideFade: async (element, config = {}) => {
+        const {
+            speed = 300,
+            direction = 'left',
+            timeout = 50,
+            newContent = null
+        } = config;
+
+        const distance = '100%'; // or '50px' for fixed distance
+
+        element.style.transition = `opacity ${speed}ms, transform ${speed}ms`;
+        element.style.opacity = 0;
+
+        // Slide out
+        switch (direction) {
+            case 'left': element.style.transform = `translateX(-${distance})`; break;
+            case 'right': element.style.transform = `translateX(${distance})`; break;
+            case 'top': element.style.transform = `translateY(-${distance})`; break;
+            case 'bottom': element.style.transform = `translateY(${distance})`; break;
+        }
+
+        await SKYLIZE.utils.wait(speed + timeout);
+
+        // Update content if provided
+        if (newContent) {
+            if (newContent.color) element.style.color = newContent.color;
+            if (newContent.innerHTML) element.innerHTML = newContent.innerHTML;
+            if (newContent.src && (element.tagName === 'IMG' || element.tagName === 'VIDEO')) {
+                element.src = newContent.src;
+            }
+        }
+
+        // Slide in and fade back
+        element.style.transform = 'translate(0, 0)';
+        element.style.opacity = 1;
+
+        // Wait for the transition to finish
+        await SKYLIZE.utils.wait(speed);
+    },
+
+    flicker: async (elements, inOut = "out") => {
+        if (!Array.isArray(elements)) elements = [elements];
+
+        const flickerElement = async (el) => {
+            const flickTimes = 3;
+            for (let i = 0; i < flickTimes; i++) {
+                el.style.opacity = (i % 2 === 0) ? (inOut === "out" ? "0" : "1") : (inOut === "out" ? "1" : "0");
+                const delay = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
+                await SKYLIZE.utils.wait(delay);
+            }
+            el.style.opacity = inOut === "out" ? "0" : "1";
+        };
+
+        const promises = elements.map(el => flickerElement(el));
+        await Promise.all(promises);
+    }
+
+}
+
+
+            wait: (ms) => {
+              return new Promise(resolve => setTimeout(resolve, ms));
+            },
+            
             createSelectable: (data, parent) => {
                 let { icon, definition, elementLocation, type } = data;
 
