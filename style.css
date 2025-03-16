@@ -38,6 +38,12 @@
     flex-direction: row-reverse;
 }
 
+.flexCenterAll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /*==========/ ANIMATIONS /==========*/
 
