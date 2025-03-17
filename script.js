@@ -131,7 +131,7 @@ window.addEventListener("load", () => {
           if (diffInWeeks < 4) return `${diffInWeeks}w ago`;
   
           return date.toLocaleDateString();
-        },
+        }
       };
   
       // Repetitive tasks
