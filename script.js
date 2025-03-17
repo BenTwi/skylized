@@ -37,8 +37,8 @@ window.addEventListener("load", () => {
             const directions = {
               left: `translateX(-${distance})`,
               right: `translateX(${distance})`,
-              top: `translateY(-${distance})`,
-              bottom: `translateY(${distance})`,
+              up: `translateY(-${distance})`,
+              down: `translateY(${distance})`,
             };
             element.style.transform = directions[direction] || "translateX(0)";
   
