@@ -28,12 +28,13 @@ window.addEventListener("load", () => {
               newContent = null,
               strength = 50,
               moveInFromOtherSide = true,
+              disableFade = false,
             } = config;
   
             const distance = strength + "px";
             const originalTransitionStyle = element.style.transition;
             element.style.transition = `opacity ${speed}ms, transform ${speed}ms`;
-            element.style.opacity = 0;
+            if(!disableFade) element.style.opacity = 0;
   
             // Slide out
             const directions = {
@@ -83,13 +84,13 @@ window.addEventListener("load", () => {
               setTimeout(() => {
                 element.style.transition = originalTransitionStyle;
                 element.style.transform = "translate(0, 0)";
-                element.style.opacity = 1;
+                if(!disableFade) element.style.opacity = 1;
               }, 50)
 
             } else {
               setTimeout(() => {
                 element.style.transform = "translate(0, 0)";
-                element.style.opacity = 1;
+                if(!disableFade) element.style.opacity = 1;
               }, 50)
             }
   
