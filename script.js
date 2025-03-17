@@ -26,9 +26,10 @@ window.addEventListener("load", () => {
               direction = "left",
               timeout = 50,
               newContent = null,
+              strength = 50
             } = config;
   
-            const distance = "100%";
+            const distance = strength + "px";
             element.style.transition = `opacity ${speed}ms, transform ${speed}ms`;
             element.style.opacity = 0;
   
