@@ -26,10 +26,12 @@ window.addEventListener("load", () => {
               direction = "left",
               timeout = 50,
               newContent = null,
-              strength = 50
+              strength = 50,
+              moveInFromOtherSide = true,
             } = config;
   
             const distance = strength + "px";
+            const originalTransitionStyle = element.style.transition;
             element.style.transition = `opacity ${speed}ms, transform ${speed}ms`;
             element.style.opacity = 0;
   
@@ -58,8 +60,38 @@ window.addEventListener("load", () => {
             }
   
             // Slide in
-            element.style.transform = "translate(0, 0)";
-            element.style.opacity = 1;
+            if(moveInFromOtherSide){
+
+              let invervetedDirection;
+              switch(direction){
+                case "up":
+                  invervetedDirection = "down";
+                break;
+                case "down":
+                  invervetedDirection = "up";
+                break;
+                case "left":
+                  invervetedDirection = "right";
+                break;
+                case "right":
+                  invervetedDirection = "left";
+                break;
+              }
+              element.style.transition = "none";
+              element.style.transform = directions[invervetedDirection] || "translateX(0)";
+              
+              setTimeout(() => {
+                element.style.transition = originalTransitionStyle;
+                element.style.transform = "translate(0, 0)";
+                element.style.opacity = 1;
+              }, 50)
+
+            } else {
+              setTimeout(() => {
+                element.style.transform = "translate(0, 0)";
+                element.style.opacity = 1;
+              }, 50)
+            }
   
             await this.utils.wait(speed);
           },
