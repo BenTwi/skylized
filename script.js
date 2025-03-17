@@ -1,10 +1,13 @@
 
-console.log("SKYLIZED")
+console.log("SKYLIZED");
 
 window.addEventListener("load", () => {
-    console.log("[SKYLIZED] Initializing...");
-    setTimeout(() => SKYLIZE.init(), 100);
-  });
+  console.log("[SKYLIZED] Initializing...");
+
+  const SKYLIZE = new SKYLIZED();   // <== move this inside
+  setTimeout(() => SKYLIZE.init(), 100);
+});
+
   
   class SKYLIZED extends EventTarget {
     constructor() {
@@ -12,7 +15,9 @@ window.addEventListener("load", () => {
   
       // Utilities
       this.utils = {
-        wait: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+        wait: (ms) => {
+          return new Promise((resolve) => setTimeout(resolve, ms));
+        },
   
         animations: {
           slideFade: async (element, config = {}) => {
@@ -82,7 +87,7 @@ window.addEventListener("load", () => {
             };
   
             await Promise.all(elements.map(flickerElement));
-          },
+          }
         },
   
         createSelectable: (data, parent) => {
