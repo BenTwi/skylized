@@ -1,3 +1,6 @@
+
+console.log("SKYLIZED")
+
 window.addEventListener("load", () => {
     console.log("[SKYLIZED] Initializing...");
     setTimeout(() => SKYLIZE.init(), 100);
