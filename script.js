@@ -97,11 +97,10 @@ window.addEventListener("load", () => {
             await this.utils.wait(speed);
           },
   
-          flicker: async (elements, inOut = "out") => {
+          flicker: async (elements, inOut = "out", flickTimes = 3, delayMin = 20, delayMax = 80) => {
             if (!Array.isArray(elements)) elements = [elements];
   
             const flickerElement = async (el) => {
-              const flickTimes = 3;
   
               for (let i = 0; i < flickTimes; i++) {
                 el.style.opacity =
@@ -113,7 +112,7 @@ window.addEventListener("load", () => {
                     ? "1"
                     : "0";
   
-                const delay = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
+                const delay = Math.floor(Math.random() * (delayMax - 20 + 1)) + delayMin;
                 await this.utils.wait(delay);
               }
   
