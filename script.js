@@ -1,12 +1,9 @@
 
 console.log("SKYLIZED");
-
-window.addEventListener("load", () => {
-  console.log("[SKYLIZED] Initializing...");
-
+setTimeout(() => {
   const SKYLIZE = new SKYLIZED();   // <== move this inside
   setTimeout(() => SKYLIZE.init(), 100);
-});
+}, 2000)
 
   
   class SKYLIZED extends EventTarget {
