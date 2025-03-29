@@ -11,7 +11,7 @@ setTimeout(() => {
       super();
 
       this._storage = {
-        dependencies: [{type: "stylesheet", url: "https://bentwi.skykopf.com/skylized/style.css", tag: "internal"}, {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest", tag: "third-party"}]
+        dependencies: [{type: "stylesheet", url: "https://bentwi.skykopf.com/skylized/style.css", tag: "internal"}, {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css", tag: "third-party"}]
       }
       
       // Utilities
