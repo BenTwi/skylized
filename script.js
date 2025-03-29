@@ -9,7 +9,11 @@ setTimeout(() => {
   class SKYLIZED extends EventTarget {
     constructor() {
       super();
-  
+
+      this._storage = {
+        dependencies: [{type: "stylesheet", url: "https://bentwi.skykopf.com/skylized/style.css", tag: "internal"}, {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest", tag: "third-party"}]
+      }
+      
       // Utilities
       this.utils = {
         wait: (ms) => {
@@ -225,6 +229,30 @@ setTimeout(() => {
   
     init() {
       console.log("[SKYLIZED] Init Repetitive...");
+
+      this._storage.thirdPartyDependencies.forEach((package) => {
+
+        let LOADER;
+
+        console.log(`[Skylized]: Adding dependencie "${package.url}" with tag ${package.tag} as type ${package.type}`)
+
+        switch(package.type){
+
+            case "stylesheet":
+                LOADER = document.createElement("link");
+                LOADER.rel = "stylesheet";
+                LOADER.href = package.url;
+                document.head.appendChild(LOADER);
+            break;
+            case "script":
+                LOADER = document.createElement("script");
+                LOADER.src = package.url;
+                document.head.appendChild(LOADER);
+            break;
+
+        }
+
+      })
   
       setInterval(() => {
         this._repetitiveTasks.timings({
