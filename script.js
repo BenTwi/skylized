@@ -230,7 +230,7 @@ setTimeout(() => {
     init() {
       console.log("[SKYLIZED] Init Repetitive...");
 
-      this._storage.thirdPartyDependencies.forEach((dependency) => {
+      this._storage.dependencies.forEach((dependency) => {
 
         let LOADER;
 
