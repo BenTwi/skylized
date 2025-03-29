@@ -230,23 +230,23 @@ setTimeout(() => {
     init() {
       console.log("[SKYLIZED] Init Repetitive...");
 
-      this._storage.thirdPartyDependencies.forEach((package) => {
+      this._storage.thirdPartyDependencies.forEach((dependency) => {
 
         let LOADER;
 
-        console.log(`[Skylized]: Adding dependencie "${package.url}" with tag ${package.tag} as type ${package.type}`)
+        console.log(`[Skylized]: Adding dependencie "${dependency.url}" with tag ${dependency.tag} as type ${dependency.type}`)
 
-        switch(package.type){
+        switch(dependency.type){
 
             case "stylesheet":
                 LOADER = document.createElement("link");
                 LOADER.rel = "stylesheet";
-                LOADER.href = package.url;
+                LOADER.href = dependency.url;
                 document.head.appendChild(LOADER);
             break;
             case "script":
                 LOADER = document.createElement("script");
-                LOADER.src = package.url;
+                LOADER.src = dependency.url;
                 document.head.appendChild(LOADER);
             break;
 
