@@ -196,6 +196,14 @@ setTimeout(() => {
             if (match) el.style.gap = `${match[1]}px`;
           });
         },
+        applyPadding: () => {
+          const elements = document.querySelectorAll("[class*='padding']");
+  
+          elements.forEach((el) => {
+            const match = el.className.match(/\bpadding(\d+)\b/);
+            if (match) el.style.padding = `${match[1]}px`;
+          });
+        },
   
         timings: ({ timezone, country, format = "24" }) => {
           const dateElements = document.querySelectorAll(".digitalClock_date");
@@ -277,6 +285,7 @@ setTimeout(() => {
   
     repeatTasks() {
       this._repetitiveTasks.applyGaps();
+      this._repetitiveTasks.applyPadding();
       this._repetitiveTasks.applySelectables();
     }
   }
