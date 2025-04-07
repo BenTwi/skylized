@@ -30,6 +30,7 @@ setTimeout(() => {
               strength = 50,
               moveInFromOtherSide = true,
               disableFade = false,
+              deleteAfterFadeOut = false,
             } = config;
   
             const distance = strength + "px";
@@ -60,7 +61,12 @@ setTimeout(() => {
                 element.src = newContent.src;
               }
             }
-  
+
+            if(deleteAfterFadeOut){
+              element.remove()
+              return;
+            }
+            
             // Slide in
             if(moveInFromOtherSide){
 
