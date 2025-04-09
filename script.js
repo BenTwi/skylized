@@ -47,7 +47,7 @@ setTimeout(() => {
             };
             element.style.transform = directions[direction] || "translateX(0)";
   
-            await this.utils.wait(speed + timeout);
+            await this.utils.wait(speed);
   
             // Replace content if provided
             if (newContent) {
@@ -66,6 +66,8 @@ setTimeout(() => {
               element.remove()
               return;
             }
+
+            await this.utils.wait(timeout)
             
             // Slide in
             if(moveInFromOtherSide){
