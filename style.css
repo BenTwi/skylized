@@ -61,6 +61,19 @@ body{
 }
 
 
+.textAlignLeft{
+    text-align: left;
+}
+
+.textAlignCenter{
+    text-align: center;
+}
+
+.textAlignRight{
+    text-align: right;
+}
+
+
 /*==========/ ANIMATIONS /==========*/
 
 @keyframes loader_X {
