@@ -1,9 +1,9 @@
 
-console.log("SKYLIZED");
-setTimeout(() => {
-  const SKYLIZE = new SKYLIZED();   // <== move this inside
-  setTimeout(() => SKYLIZE.init(), 100);
-}, 2000)
+
+  window.addEventListener('loiad', () => {
+    const SKYLIZE = new SKYLIZED();   // <== move this inside
+    setTimeout(() => SKYLIZE.init(), 100);
+  })
 
   
   class SKYLIZED extends EventTarget {
@@ -304,3 +304,4 @@ setTimeout(() => {
   // Instantiate the class
   const SKYLIZE = new SKYLIZED();
   
+
