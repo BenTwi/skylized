@@ -235,7 +235,7 @@
               hourCycle: "24" === "24" ? "h23" : "h12",
             })
           
-          if(parseInt(TIME.split(":")[1]) == 0 && parseInt(TIME.split(":")[2] == 0){
+          if(parseInt(TIME.split(":")[1]) == 0 && parseInt(TIME.split(":")[2]) == 0){
         dateElements.forEach((el) => {
             el.textContent = DATE;
           });
@@ -312,4 +312,5 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear, cls = console.clear;
+
 
