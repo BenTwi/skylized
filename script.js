@@ -219,28 +219,31 @@
         timings: ({ timezone, country, format = "24" }) => {
           const dateElements = document.querySelectorAll(".digitalClock_date");
           const timeElements = document.querySelectorAll(".digitalClock_time");
-  
-          dateElements.forEach((el) => {
-            el.textContent = new Date().toLocaleDateString(country, {
+
+          const DATE = new Date().toLocaleDateString(country, {
               weekday: "long",
               year: "numeric",
               month: "long",
               day: "numeric",
               timeZone: timezone,
             });
-          });
-  
-          timeElements.forEach((el) => {
-            const time = new Date().toLocaleTimeString(country, {
+          const TIME = new Date().toLocaleTimeString("de-DE", {
               hour: "2-digit",
               minute: "2-digit",
               second: "2-digit",
-              timeZone: timezone,
-              hourCycle: format === "24" ? "h23" : "h12",
-            });
+              timeZone: "Europe/Berlin",
+              hourCycle: "24" === "24" ? "h23" : "h12",
+            })
+          
+          if(parseInt(TIME.split(":")[1]) == 0 && parseInt(TIME.split(":")[2] == 0){
+        dateElements.forEach((el) => {
+            el.textContent = DATE;
+          });
+      }
   
+          timeElements.forEach((el) => {  
             el.style.fontFamily = "'Open Sans', sans-serif";
-            el.textContent = `${time}${format === "24" ? " UHR" : ""}`;
+            el.textContent = `${time}${TIME === "24" ? " UHR" : ""}`;
           });
         },
       };
@@ -308,3 +311,4 @@
 
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log
+
