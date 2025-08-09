@@ -1,6 +1,6 @@
 
 
-  window.addEventListener('loiad', () => {
+  window.addEventListener('load', () => {
     const SKYLIZE = new SKYLIZED();   // <== move this inside
     setTimeout(() => SKYLIZE.init(), 100);
   })
@@ -304,4 +304,5 @@
   // Instantiate the class
   const SKYLIZE = new SKYLIZED();
   
+
 
