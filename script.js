@@ -243,7 +243,7 @@
   
           timeElements.forEach((el) => {  
             el.style.fontFamily = "'Open Sans', sans-serif";
-            el.textContent = `${time}${TIME === "24" ? " UHR" : ""}`;
+            el.textContent = `${TIME}${format === "24" ? " UHR" : ""}`;
           });
         },
       };
@@ -312,6 +312,7 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
 
