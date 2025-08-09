@@ -311,6 +311,8 @@
 
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
-const clear, cls = console.clear;
+const clear = console.clear, cls = console.clear;
+
+
 
 
