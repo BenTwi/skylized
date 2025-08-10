@@ -14,7 +14,9 @@
         dependencies: [
           {type: "stylesheet", url: "https://skykopf.de/skylized/style.css", tag: "internal"},
           {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css", tag: "third-party"}
-                ]
+                ],
+        runtimeFlags: {
+          isFirstDateUpdate: true
       }
       
       // Utilities
@@ -235,7 +237,8 @@
               hourCycle: "24" === "24" ? "h23" : "h12",
             })
           
-          if(parseInt(TIME.split(":")[1]) == 0 && parseInt(TIME.split(":")[2]) == 0){
+          if(parseInt(TIME.split(":")[1]) == 0 && parseInt(TIME.split(":")[2]) == 0 || this._storage.runtimeFlags.isFirstDateUpdate){
+            this._storage.runtimeFlags.isFirstDateUpdate = false;
         dateElements.forEach((el) => {
             el.textContent = DATE;
           });
@@ -312,6 +315,7 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
 
