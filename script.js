@@ -17,6 +17,7 @@
                 ],
         runtimeFlags: {
           isFirstDateUpdate: true
+        }
       }
       
       // Utilities
@@ -165,25 +166,40 @@
           parent.appendChild(outerDiv);
         },
   
-        getRelativeTime: (timestamp) => {
-          const date = new Date(timestamp);
-          const now = new Date();
-  
-          const diffInSeconds = Math.floor((now - date) / 1000);
-          const diffInMinutes = Math.floor(diffInSeconds / 60);
-          const diffInHours = Math.floor(diffInMinutes / 60);
-          const diffInDays = Math.floor(diffInHours / 24);
-          const diffInWeeks = Math.floor(diffInDays / 7);
-  
-          if (diffInSeconds < 60) return `${diffInSeconds}s ago`;
-          if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
-          if (diffInHours < 24) return `${diffInHours}h ago`;
-          if (diffInDays === 1) return `yesterday`;
-          if (diffInDays < 7) return `${diffInDays}d ago`;
-          if (diffInWeeks < 4) return `${diffInWeeks}w ago`;
-  
-          return date.toLocaleDateString();
-        }
+        getRelativeTime: (input) => {
+  let date = (input instanceof Date) ? input : new Date(
+    typeof input === "number" && input < 1e12 ? input * 1000 : input
+  );
+
+  if (isNaN(date)) return "Invalid date";
+
+  const now = new Date();
+  let diffInSeconds = Math.floor((now - date) / 1000);
+  const future = diffInSeconds < 0;
+  diffInSeconds = Math.abs(diffInSeconds);
+
+  const units = [
+    { name: "year",   seconds: 31536000 },
+    { name: "month",  seconds: 2592000 },
+    { name: "week",   seconds: 604800 },
+    { name: "day",    seconds: 86400 },
+    { name: "hour",   seconds: 3600 },
+    { name: "minute", seconds: 60 },
+    { name: "second", seconds: 1 }
+  ];
+
+  for (const unit of units) {
+    const value = Math.floor(diffInSeconds / unit.seconds);
+    if (value >= 1) {
+      return future
+        ? `in ${value} ${unit.name}${value > 1 ? "s" : ""}`
+        : `${value} ${unit.name}${value > 1 ? "s" : ""} ago`;
+    }
+  }
+
+  return "just now";
+},
+
       };
   
       // Repetitive tasks
@@ -315,9 +331,3 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
-
-
-
-
-
-
