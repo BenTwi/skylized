@@ -13,7 +13,8 @@
       this._storage = {
         dependencies: [
           {type: "stylesheet", url: "https://www.skykopf.de/skylized/style.css", tag: "internal"},
-          {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css", tag: "third-party"}
+          {type: "stylesheet", url: "https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.min.css", tag: "third-party"},
+          {type: "script", url: "https://cdn.jsdelivr.net/npm/chart.js@latest/dist/chart.umd.min.js", tag: "third-party"}
                 ],
         runtimeFlags: {
           isFirstDateUpdate: true
@@ -25,6 +26,20 @@
         wait: (ms) => {
           return new Promise((resolve) => setTimeout(resolve, ms));
         },
+
+        webReq: async (url, method = "GET", data = {}) => {
+          const RESPONSE = await fetch(url, {
+              method: method,
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+        
+            const RESP = await RESPONSE.json()
+            console.log(RESP)
+            return RESP;
+        }
   
         animations: {
           slideFade: async (element, config = {}) => {
@@ -331,5 +346,6 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
