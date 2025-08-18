@@ -39,7 +39,7 @@
             const RESP = await RESPONSE.json()
             console.log(RESP)
             return RESP;
-        }
+        },
   
         animations: {
           slideFade: async (element, config = {}) => {
@@ -346,6 +346,7 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
 
