@@ -28,18 +28,27 @@
         },
 
         webReq: async (url, method = "GET", data = {}) => {
-          if(method == "GET" || method == "HEAD") data = null;
-          const RESPONSE = await fetch(url, {
-              method: method,
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            });
+          const options = {
+            method,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          };
         
-            const RESP = await RESPONSE.json()
-            console.log(RESP)
-            return RESP;
+          if (method !== "GET" && method !== "HEAD") {
+            options.body = JSON.stringify(data);
+          }
+        
+          const RESPONSE = await fetch(url, options);
+          let RESP;
+          try {
+            RESP = await RESPONSE.json();
+          } catch {
+            RESP = null;
+          }
+        
+          console.log(RESP);
+          return RESP;
         },
   
         animations: {
@@ -347,6 +356,7 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
 
