@@ -28,6 +28,7 @@
         },
 
         webReq: async (url, method = "GET", data = {}) => {
+          if(method == "GET" || method == "HEAD") data = null;
           const RESPONSE = await fetch(url, {
               method: method,
               headers: {
@@ -346,6 +347,7 @@
 //This is just for fun to mess around with collegues. Ignore this please :]
 const blyat = console.log;
 const clear = console.clear, cls = console.clear;
+
 
 
 
