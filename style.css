@@ -1,7 +1,5 @@
 body{
 
-    background: #f8f8f8;
-
     width: 100vw;
     height: 100vh;
 
@@ -115,3 +113,4 @@ body{
   50% { transform: translateY(-10px) }
   100% { transform: translateY(0) }
 }
+
